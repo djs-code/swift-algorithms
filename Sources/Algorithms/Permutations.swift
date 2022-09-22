@@ -90,6 +90,13 @@ public struct PermutationsSequence<Base: Collection> {
   /// bounds of the size of the `base` collection.
   @usableFromInline
   internal let kRange: Range<Int>
+
+  @inlinable
+  internal init(_ base: Base, baseCount: Int, kRange: Range<Int>) {
+    self.base = base
+    self.baseCount = baseCount
+    self.kRange = kRange
+  }
   
   /// Initializes a `PermutationsSequence` for all permutations of `base` of
   /// size `k`.
@@ -106,7 +113,8 @@ public struct PermutationsSequence<Base: Collection> {
     } else {
       kRange = nil
     }
-    self.init(base, kRange: kRange)
+      
+    self = .init(base, kRange: kRange)
   }
   
   /// Initializes a `PermutationsSequence` for all combinations of `base` of
@@ -120,13 +128,13 @@ public struct PermutationsSequence<Base: Collection> {
   internal init<R: RangeExpression>(
     _ base: Base, kRange: R?
   ) where R.Bound == Int {
-    self.base = base
     let baseCount = base.count
-    self.baseCount = baseCount
     let upperBound = baseCount + 1
-    self.kRange = kRange?.relative(to: 0 ..< .max)
+    let kRange = kRange?.relative(to: 0 ..< .max)
       .clamped(to: 0 ..< upperBound) ??
       baseCount ..< upperBound
+
+    self = .init(base, baseCount: baseCount, kRange: kRange)
   }
   
   /// The total number of permutations.
