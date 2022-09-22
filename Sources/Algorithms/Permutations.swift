@@ -91,7 +91,7 @@ public struct PermutationsSequence<Base: Collection> {
   @usableFromInline
   internal let kRange: Range<Int>
 
-  @inlinable
+  @usableFromInline
   internal init(_ base: Base, baseCount: Int, kRange: Range<Int>) {
     self.base = base
     self.baseCount = baseCount
@@ -113,7 +113,7 @@ public struct PermutationsSequence<Base: Collection> {
     } else {
       kRange = nil
     }
-      
+
     self = .init(base, kRange: kRange)
   }
   
