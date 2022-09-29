@@ -56,6 +56,7 @@ extension Collection {
 ///
 /// Use the `adjacentPairs()` method on a sequence to create an
 /// `AdjacentPairsSequence` instance.
+@frozen
 public struct AdjacentPairsSequence<Base: Sequence> {
   @usableFromInline
   internal let base: Base
@@ -122,6 +123,7 @@ extension AdjacentPairsSequence: LazySequenceProtocol
 ///
 /// Use the `adjacentPairs()` method on a collection to create an
 /// `AdjacentPairsCollection` instance.
+@frozen
 public struct AdjacentPairsCollection<Base: Collection> {
   @usableFromInline
   internal let base: Base
